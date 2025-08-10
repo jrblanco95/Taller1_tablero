@@ -22,6 +22,11 @@ app.config.suppress_callback_exceptions = True
 # Load data from csv
 def load_data():
     # To do: Completar la función 
+    data_raw = pd.read_csv("datos_energia.csv")
+    data_raw['time'] = pd.to_datetime(data_raw['time'].astype(str))
+    data_raw = data_raw.set_index('time')
+
+    return data_raw
     
 
 # Cargar datos
@@ -121,6 +126,7 @@ def generate_control_card():
             html.Div(
                 id="componentes-fecha-inicial",
                 children=[
+                
                     html.Div(
                         id="componente-fecha",
                         children=[
